@@ -7,6 +7,8 @@
 
 ## Instalasi
 Clone repository ini ke komputer lokal Anda menggunakan perintah berikut:
+
+atau bisa kunjungi https://andreas-dicoding.streamlit.app/
 ```
 git clone https://github.com/Mazwan98/dicoding.git
 ```
@@ -15,4 +17,3 @@ Pastikan Anda memiliki lingkungan Python yang sesuai dan pustaka-pustaka yang di
 pip install streamlit
 pip install -r dashboard/requirements.txt
 ```
-
