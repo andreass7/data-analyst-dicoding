@@ -36,9 +36,15 @@ class DataAnalyzer:
         return sum_order_items_df
 
     def review_score_df(self):
-        review_scores = self.df['review_score'].value_counts().sort_values(ascending=False)
-        most_common_score = review_scores.idxmax()
-
+    # Menghapus nilai NaN terlebih dahulu agar perhitungan hanya berdasarkan data valid
+        review_scores = self.df['review_score'].dropna().value_counts().sort_values(ascending=False)
+        
+        # Cek apakah review_scores kosong sebelum mencari nilai maksimum
+        if review_scores.empty:
+            most_common_score = None  # atau bisa diberi nilai default sesuai kebutuhan
+        else:
+            most_common_score = review_scores.idxmax()
+        
         return review_scores, most_common_score
 
     def create_bystate_df(self):

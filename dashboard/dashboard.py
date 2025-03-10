@@ -69,7 +69,7 @@ with col2:
 
 fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(45, 25))
 
-colors = ["#068DA9", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
+colors = ["#1F7D53", "#068DA9", "#068DA9", "#068DA9", "#068DA9"]
 
 sns.barplot(x="product_count", y="product_category_name_english", data=sum_order_items_df.head(5), palette=colors, ax=ax[0])
 ax[0].set_ylabel(None)
@@ -106,7 +106,7 @@ fig, ax = plt.subplots(figsize=(12, 6))
 sns.barplot(x=review_score.index, 
             y=review_score.values, 
             order=review_score.index,
-            palette=["#068DA9" if score == common_score else "#D3D3D3" for score in review_score.index]
+            palette=["#1F7D53" if score == common_score else "#068DA9" for score in review_score.index]
             )
 
 plt.title("Rating by customers for service", fontsize=15)
@@ -127,7 +127,7 @@ with tab1:
     sns.barplot(x=state.customer_state.value_counts().index,
                 y=state.customer_count.values, 
                 data=state,
-                palette=["#068DA9" if score == most_common_state else "#D3D3D3" for score in state.customer_state.value_counts().index]
+                palette=["#1F7D53" if score == most_common_state else "#068DA9" for score in state.customer_state.value_counts().index]
                     )
 
     plt.title("Number customers from State", fontsize=15)
@@ -144,7 +144,7 @@ with tab2:
     sns.barplot(x=order_status.index,
                 y=order_status.values,
                 order=order_status.index,
-                palette=["#068DA9" if score == common_status else "#D3D3D3" for score in order_status.index]
+                palette=["#1F7D53" if score == common_status else "#068DA9" for score in order_status.index]
                 )
     
     plt.title("Order Status", fontsize=15)
