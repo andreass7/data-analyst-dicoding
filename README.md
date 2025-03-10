@@ -15,5 +15,9 @@ git clone https://github.com/andreass7/data-analyst-dicoding
 Pastikan Anda memiliki lingkungan Python yang sesuai dan pustaka-pustaka yang diperlukan. Anda dapat menginstal pustaka-pustaka tersebut dengan menjalankan perintah berikut:
 ```
 pip install streamlit
-pip install -r dashboard/requirements.txt
+pip install -r requirements.txt
+```
+Lalu jalankan perintah berikut
+```
+streamlit run dashboard/dashboard.py
 ```
