@@ -92,28 +92,40 @@ st.pyplot(fig)
 
 # Review Score
 st.subheader("Review Score")
-col1,col2 = st.columns(2)
+col1, col2 = st.columns(2)
 
 with col1:
     avg_review_score = review_score.mean()
-    st.markdown(f"Average Review Score: **{avg_review_score}**")
+    st.markdown(f"Average Review Score: **{avg_review_score:.2f}**")  # Format dua desimal
 
 with col2:
-    most_common_review_score = review_score.value_counts().index[0]
-    st.markdown(f"Most Common Review Score: **{most_common_review_score}**")
+    if not review_score.empty:
+        most_common_review_score = review_score.value_counts().index[0]
+        st.markdown(f"Most Common Review Score: **{most_common_review_score}**")
+    else:
+        most_common_review_score = None
+        st.markdown("Most Common Review Score: **Data kosong**")
+
+# Jika data ada, gunakan palette khusus, jika tidak gunakan warna default
+if most_common_review_score is not None:
+    palette = ["#1F7D53" if score == most_common_review_score else "#068DA9" for score in review_score.index]
+else:
+    palette = "#068DA9"
 
 fig, ax = plt.subplots(figsize=(12, 6))
-sns.barplot(x=review_score.index, 
-            y=review_score.values, 
-            order=review_score.index,
-            palette=["#1F7D53" if score == common_score else "#068DA9" for score in review_score.index]
-            )
+sns.barplot(
+    x=review_score.index, 
+    y=review_score.values, 
+    order=review_score.index,
+    palette=palette
+)
 
-plt.title("Rating by customers for service", fontsize=15)
-plt.xlabel("Rating")
-plt.ylabel("Count")
-plt.xticks(fontsize=12)
+ax.set_title("Rating by Customers for Service", fontsize=15)
+ax.set_xlabel("Rating")
+ax.set_ylabel("Count")
+ax.tick_params(axis='x', labelsize=12)
 st.pyplot(fig)
+
 
 # Customer Demographic
 st.subheader("Customer Demographic")
@@ -156,7 +168,7 @@ with tab2:
 with tab3:
     map_plot.plot()
 
-    with st.expander("See Explanation"):
+    with st.expander("Lihat Penjelasan"):
         st.write('Sesuai dengan grafik yang sudah dibuat, ada lebih banyak pelanggan di bagian tenggara dan selatan. Informasi lainnya, ada lebih banyak pelanggan di kota-kota yang merupakan ibu kota (São Paulo, Rio de Janeiro, Porto Alegre, dan lainnya).')
 
 st.caption('Copyright (C) Andreas Adi Prasetyo {Y}')
